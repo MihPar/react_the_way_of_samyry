@@ -1,0 +1,9 @@
+.item {
+    color: rgb(255, 0, 179);
+}
+.item img {
+    border-radius: 50px
+}
+.like {
+    color: rgb(238, 255, 0);
+}

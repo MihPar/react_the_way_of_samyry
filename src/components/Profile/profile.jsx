@@ -1,3 +1,4 @@
+import MyPosts from "./MyPosts/MyPosts"
 import object from "./Profile.module.css"
 // import React from "react"
 
@@ -10,21 +11,7 @@ const Profile = () => {
             <div>
                  ava + discription
             </div>
-            <div>
-                My posts
-                <div>
-                    New posts
-                </div>
-                <div>
-                    <div className={object.item}>
-                        post 1
-                    </div>
-                    <div className={object.item}>
-                        post 2
-                    </div>
-                </div>
-                
-            </div>
+            <MyPosts />
         </div>
     )
 }
