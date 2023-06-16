@@ -1,0 +1,15 @@
+.dialoges {
+    display: grid;
+}
+.dialogesItems {
+    padding: 10px;
+}
+.dialogesItems .actiove {
+    color: gold;
+}
+.messages {
+    padding: 10px;
+}
+.messages .message {
+
+}

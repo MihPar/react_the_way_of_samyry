@@ -1,5 +1,6 @@
 import MyPosts from "./MyPosts/MyPosts"
 import object from "./Profile.module.css"
+import React from 'react'
 // import React from "react"
 
 const Profile = () => {
