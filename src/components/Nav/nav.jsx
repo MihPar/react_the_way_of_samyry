@@ -1,15 +1,15 @@
 import object from './Nav.module.css'
 // import React from "react"
-console.log(object)
+console.log(object )
 
 const Nav = () => {
     return (
         <nav className={object.nav}>
             <div className={`${object.item} ${object.active}`}>
-                <a>Profile</a>
+                <a href="/Profile">Profile</a>
             </div>
             <div className={object.item}>
-                <a>Messages</a>
+                <a href="/Dialogs">Messages</a>
             </div>
             <div className={object.item}>
                 <a>News</a>

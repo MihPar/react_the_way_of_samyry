@@ -1,6 +1,6 @@
 import object from "./Post.module.css";
 
-const Post = () => {
+const Post = (props) => {
   return (
     <div className={object.item}>
       <img
@@ -8,12 +8,12 @@ const Post = () => {
         height="50px"
         width="50px"
       />
-      post1
+      {props.message}
+      
       <div className={object.like}>
-        <span>like</span>
+        <span>like </span> {props.likesCount}
         <br />
-        <span>dislike</span>
-      </div>
+      </div> 
     </div>
   );
 };
