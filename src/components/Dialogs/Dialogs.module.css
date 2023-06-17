@@ -1,15 +1,17 @@
-.dialoges {
-    display: grid;
+.dialogs {
+    display: flex;
 }
-.dialogesItems {
+.dialogsItems {
     padding: 10px;
+    color: rgb(70, 131, 104);
 }
-.dialogesItems .actiove {
+.dialogsItems .active {
     color: gold;
 }
 .messages {
     padding: 10px;
+    color: rgb(70, 131, 104);
 }
-.messages .message {
+/* .messages .message {
 
-}
+} */
