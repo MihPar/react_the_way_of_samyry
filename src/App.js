@@ -9,6 +9,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 
+// let component = () => {<Profile />}
+
 const App = (props) => {
   return (
     <BrowserRouter>
@@ -21,6 +23,11 @@ const App = (props) => {
                 <Route path="/dialogs" element={<Dialogs/>} />
                 <Route path="/news" element={<News />} />
                 <Route path="/music" element={<Music />} />
+
+                {/* <Route path="/profile" render={component} />
+                <Route path="/dialogs" render={() => <Dialogs />} />
+                <Route path="/news" render={() => <News />} />
+                <Route path="/music" render={() => <Music />} /> */}
             </Routes>
         </div> 
       </div>

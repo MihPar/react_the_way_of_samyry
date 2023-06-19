@@ -1,44 +1,38 @@
-import React from "react";
 import object from "./Dialogs.module.css";
-import {NavLink} from "react-router-dom"
+import DialogsItems from "./DialogItem/DialogItem"
+import Message from "./Message/Message"
 
-const DialogsItems = (props) => {
-    let path = "/dialogs/" + props.id
-    return (
-        <div>
-            <NavLink to={path} className={navData => navData.isActive ? object.active : object.dialogsItems}>{props.name}</NavLink>
-        </div>
-    )
-}
+const dialogsData = [
+  { id: 1, name: "Mickhael" },
+  { id: 2, name: "Tatiana" },
+  { id: 3, name: "Alexandr" },
+  { id: 4, name: "Maria" },
+  { id: 5, name: "Ilia" },
+];
 
-const Messages = (props) => {
-    let path = "/messages/" + props.id
-    return (
-        <div>
-            <NavLink to={path}  className={navData => navData.isActive ? object.active : object.messages}>{props.message}</NavLink>
-        </div>
-    )
-}
- 
+let dialogsElements = dialogsData.map(function (dialog) {
+  return <DialogsItems name={dialog.name} id={dialog.id} />;
+});
+
+const messagesData = [
+  { id: 1, message: "Hi" },
+  { id: 2, message: "How are you" },
+  { id: 3, message: "Not bad" },
+  { id: 4, message: "I am fun" },
+  { id: 5, message: "It is cool" },
+];
+
+let messagesElement = messagesData.map(function (message) {
+  return <Message message={message.message} />;
+});
+
 const Dialogs = () => {
-  return(
-     <div className={object.dialogs}>
-        <div className={object.dialogsItems}>
-            <DialogsItems name="Mickhael" id="1" />
-            <DialogsItems name="Tatiana" id="2" />
-            <DialogsItems name="Alexandr" id="3" />
-            <DialogsItems name="Maria" id="4" />
-            <DialogsItems name="Ilia" id="5" />
-        </div>
-        <div className={object.messages}>
-            <Messages message="Hi" id="1"/>
-            <Messages message='How are you' id="2" />
-            <Messages message="Not bad" id="3" />
-            <Messages message="I am fun" id="4" />
-            <Messages message="It is cool" id="5" />
-        </div>
-     </div>
-  )
+  return (
+    <div className={object.dialogs}>
+      <div className={object.dialogsItems}>{dialogsElements}</div>
+      <div className={object.messages}>{messagesElement}</div>
+    </div>
+  );
 };
 
 export default Dialogs;
