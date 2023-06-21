@@ -12,6 +12,7 @@ import Music from "./components/Music/Music";
 // let component = () => {<Profile />}
 
 const App = (props) => {
+    
   return (
     <BrowserRouter>
       <div className="app-wrapper">
@@ -19,15 +20,10 @@ const App = (props) => {
         <Nav />
         <div class="app-wraper-content">
            <Routes>
-                <Route path="/profile" element={<Profile/>} />
-                <Route path="/dialogs" element={<Dialogs/>} />
+                <Route path="/profile" element={<Profile postData={props.postData} />} />
+                <Route path="/dialogs" element={<Dialogs messagesData={props.messagesData} dialogsData={props.dialogsData}/>} />
                 <Route path="/news" element={<News />} />
                 <Route path="/music" element={<Music />} />
-
-                {/* <Route path="/profile" render={component} />
-                <Route path="/dialogs" render={() => <Dialogs />} />
-                <Route path="/news" render={() => <News />} />
-                <Route path="/music" render={() => <Music />} /> */}
             </Routes>
         </div> 
       </div>
