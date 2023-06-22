@@ -20,6 +20,9 @@ const Nav = () => {
             <div className={object.item} >
                 <NavLink>Settings</NavLink>
             </div>
+            <div className={object.item} >
+                <NavLink to="/friends" className={navData => navData.isActive ? object.active : object.item}>Friends</NavLink>
+            </div>
         </nav>
     )
 }
