@@ -1,5 +1,7 @@
 const ADD_POST = "ADD_POST"
 const UPDATA_NEW_POST_TEXT =  'UPDATA-NEW-POST-TEXT'
+const UPDATA_NEW_MESSAGE_BODY = "UPDATA_NEW_MESSAGE_BODY" 
+const SEND_MESSAGE = "SEND_MESSAGE"
 
 let store = {
   _state: {
@@ -27,6 +29,7 @@ let store = {
         { id: 4, name: "Maria" },
         { id: 5, name: "Ilia" },
       ],
+      newMessageBody: ""
     },
   },
   getState() {
@@ -47,25 +50,29 @@ let store = {
       };
       this._state.profilePage.postData.push(newPost);
       this._state.profilePage.newPostText = "";
-      this.callSubscriber(_state);
+      this.callSubscriber(this._state);
     } else if (action.type === UPDATA_NEW_POST_TEXT) {
       this._state.profilePage.newPostText = action.newText;
-      this.callSubscriber(_state);
+      this.callSubscriber(this._state);
+    } else if(action.type === UPDATA_NEW_MESSAGE_BODY) {
+        this._state.dialogsPage.newMessageBody = action.body
+        this.callSubscriber(this._state)
+    } else if(action.type === SEND_MESSAGE) {
+        let body = this._state.dialogsPage.newMessageBody
+        this._state.dialogsPage.newMessageBody = ""
+        this._state.dialogsPage.messagesData.push({ id: 6, message: body })
+        this._callSubscriber(this._state)
     }
   },
 };
 
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST
-    }
-}
+export const addPostActionCreator = () => ({type: ADD_POST})
+export const updataNewPostTextActionCreator = (text) => 
+({type: UPDATA_NEW_POST_TEXT, newText: text})
 
-export const updataNewPostTextActionCreator = (text) => {
-    return {
-        type: {type: UPDATA_NEW_POST_TEXT, newText: text} 
-    }
-}
+export const sendMessageCreator = () => ({type: SEND_MESSAGE})
+export const updataNewMessageBodyCreator = (body) => 
+({type: UPDATA_NEW_MESSAGE_BODY, body: body})
 
-window.store = store;
 export default store;
+window.store = store;
