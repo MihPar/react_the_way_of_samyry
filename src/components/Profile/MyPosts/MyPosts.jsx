@@ -1,8 +1,8 @@
-import { updataNewPostText } from "../../redux/state";
+import { updataNewPostText } from "../../redux/store";
 import object from "./MyPosts.module.css";
 import Post from "./Posts/Post";
 import React from "react";
-import {addPostActionCreator, updataNewPostTextActionCreator} from './../../redux/state'
+import {addPostActionCreator, updataNewPostTextActionCreator} from './../../redux/profile_reducer'
 
 
 const  MyPosts = (props) => {
