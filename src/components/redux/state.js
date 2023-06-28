@@ -1,5 +1,10 @@
+import profileReducer from "./profile_reducer";
+import dialogsReducer from "./dialogs_reducer";
+import sidebarReducer from "./sidebar_reducer";
+ 
 const ADD_POST = "ADD_POST"
 const UPDATA_NEW_POST_TEXT =  'UPDATA-NEW-POST-TEXT'
+
 const UPDATA_NEW_MESSAGE_BODY = "UPDATA_NEW_MESSAGE_BODY" 
 const SEND_MESSAGE = "SEND_MESSAGE"
 
@@ -31,6 +36,7 @@ let store = {
       ],
       newMessageBody: ""
     },
+    sidebar: {}
   },
   getState() {
     return this._state;
@@ -42,27 +48,13 @@ let store = {
     this.callSubscriber = observer;
   },
   dispatch(action) {
-    if (action.type === ADD_POST) {
-      let newPost = {
-        id: 5,
-        message: this._state.profilePage.newPostText,
-        likeCount: 0,
-      };
-      this._state.profilePage.postData.push(newPost);
-      this._state.profilePage.newPostText = "";
-      this.callSubscriber(this._state);
-    } else if (action.type === UPDATA_NEW_POST_TEXT) {
-      this._state.profilePage.newPostText = action.newText;
-      this.callSubscriber(this._state);
-    } else if(action.type === UPDATA_NEW_MESSAGE_BODY) {
-        this._state.dialogsPage.newMessageBody = action.body
-        this.callSubscriber(this._state)
-    } else if(action.type === SEND_MESSAGE) {
-        let body = this._state.dialogsPage.newMessageBody
-        this._state.dialogsPage.newMessageBody = ""
-        this._state.dialogsPage.messagesData.push({ id: 6, message: body })
-        this._callSubscriber(this._state)
-    }
+
+    this._state.profilePage = profileReducer(this._state.profilePage, action)
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+    this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+
+    this._callSubscriber(this._state)
+
   },
 };
 
