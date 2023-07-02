@@ -22,12 +22,26 @@ const DialogsContainer = (props) => {
           <Dialogs
             updataNewMessageBody={onNewMessageChange}
             sendMessage={onSendMessageClick}
-            dialogsPage={state}
+            dialogsPage={store.getState().dialogsPage}
           />
         );
       }}
     </StoreContext.Consumer>
   );
 };
+
+let mapStateToProps = (state) => {
+    return {
+        dialogsPage: state.dialogsPage
+    }
+}
+
+let f2 = () => {
+    return {
+
+    }
+}
+
+const SuperDialogsContainer = connect(mapStateToProps, f2)(Dialogs)
 
 export default DialogsContainer;
