@@ -6,21 +6,13 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
-let rerenderEntireTree = (state) => {
-  const root = ReactDOM.createRoot(document.getElementById("root"));
-  root.render(
-    <BrowserRouter>
-      <React.StrictMode>
-        <Provider store={store}>
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <BrowserRouter>
+    <React.StrictMode>
+      <Provider store={store}>
         <App />
-        </Provider>
-      </React.StrictMode>
-    </BrowserRouter>
-  );
-};
-
-rerenderEntireTree(store.getState());
-store.subscribe(() => {
-    let state = store.getState()
-    rerenderEntireTree(state)
-});
+      </Provider>
+    </React.StrictMode>
+  </BrowserRouter>
+);
