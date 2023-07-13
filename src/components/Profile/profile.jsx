@@ -3,12 +3,15 @@ import object from "./Profile.module.css";
 import React from "react";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-// import React from "react"
+import Preloader from "../common/preloader/preloader";
 
 const Profile = (props) => {
+    if(!props.profile) {
+        return <Preloader />
+    }
   return (
     <div>
-      <ProfileInfo />
+      <ProfileInfo profile={props.profile} />
       <MyPostsContainer />
     </div>
   );
