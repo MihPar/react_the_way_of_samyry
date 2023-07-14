@@ -4,20 +4,20 @@ import {
   setUsers,
   toggleIsFetching,
   unfollow,
+  toggleFollowingProgress,
 } from "./../redux/users_reduser";
 import { setCurrentPage } from "./../redux/users_reduser";
 import { setTotalUsersCount } from "./../redux/users_reduser";
-import axios from "axios";
 import Users from "./Users";
 import React from "react";
 import Preloader from "../common/preloader/preloader";
-import { getUsers } from "../../api/api";
+import { usersAPI } from "../../api/api";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.toggleIsFetching(true);
 
-    getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
+    usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
         this.props.toggleIsFetching(false);
         this.props.setUsers(data.data.items);
         this.props.setTotalUsersCount(data.data.totalCount);
@@ -28,7 +28,7 @@ class UsersContainer extends React.Component {
     this.props.toggleIsFetching(true);
     this.props.setCurrentPage(pageNumber);
 
-    getUsers(pageNumber, this.props.pageSize).then(function (data) {
+    usersAPI.getUsers(pageNumber, this.props.pageSize).then(function (data) {
         this.props.toggleIsFetching(false);
         return this.props.setUsers(data.data.items);
       });
@@ -46,6 +46,7 @@ class UsersContainer extends React.Component {
           users={this.props.users}
           follow={this.props.follow}
           unfollow={this.props.unfollow}
+          toggleFollowingProgress={this.props.toggleFollowingProgress}
         />
       </>
     );
@@ -59,6 +60,7 @@ let mapStateToProps = (state) => {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress
   };
 };
 
@@ -92,4 +94,5 @@ export default connect(mapStateToProps, {
       setCurrentPage,
       setTotalUsersCount,
       toggleIsFetching,
+      toggleFollowingProgress,
   })(UsersContainer);
