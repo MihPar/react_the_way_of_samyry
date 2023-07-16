@@ -17,26 +17,18 @@ export const usersAPI = {
       });
   },
   follow(usersId) {
-    return instans.post(
-      `https://social-network.samuraijs.com/api/1.0/follow/${usersId}`
-    );
+    return instans.post(`follow/${usersId}`);
   },
   unfollow(usersId) {
-    return instans.delete(
-      `https://social-network.samuraijs.com/api/1.0/follow/${usersId}`
-    );
+    return instans.delete(`follow/${usersId}`);
   },
   getProfile(userId) {
-    return axios.get(
-      `https://social-network.samuraijs.com/api/1.0/profile/` + userId
-    );
+    return instans.get(`profile/` + userId);
   },
 };
 
-// export const getUsers2 = (currentPage = 1, pageSize = 10) => {
-//   return instans
-//     .get(`follow ?page=${currentPage}&count=${pageSize}`)
-//     .then(function (response) {
-//       return response.data;
-//     });
-// };
+export const authAPI = {
+  me() {
+    return instans.get(`auth/me`);
+  },
+};
