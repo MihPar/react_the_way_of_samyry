@@ -26,12 +26,17 @@ export const usersAPI = {
       `https://social-network.samuraijs.com/api/1.0/follow/${usersId}`
     );
   },
+  getProfile(userId) {
+    return axios.get(
+      `https://social-network.samuraijs.com/api/1.0/profile/` + userId
+    );
+  },
 };
 
-export const getUsers2 = (currentPage = 1, pageSize = 10) => {
-  return instans
-    .get(`follow ?page=${currentPage}&count=${pageSize}`)
-    .then(function (response) {
-      return response.data;
-    });
-};
+// export const getUsers2 = (currentPage = 1, pageSize = 10) => {
+//   return instans
+//     .get(`follow ?page=${currentPage}&count=${pageSize}`)
+//     .then(function (response) {
+//       return response.data;
+//     });
+// };
