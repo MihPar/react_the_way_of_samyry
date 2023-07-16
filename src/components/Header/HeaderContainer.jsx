@@ -5,7 +5,7 @@ import React from "react";
 
 class HeaderContainer extends React.Component {
   componentDidMount() {
-    this.props.getAuthUserData()
+    this.props.getAuthUserData();
   }
   render() {
     return <Header {...this.props} />;
@@ -13,8 +13,10 @@ class HeaderContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-  isAuth: state.auth.isAuth;
-  login: state.auth.login;
+  return {
+    isAuth: state.auth.isAuth,
+    login: state.auth.login,
+  };
 };
 
 export default connect(mapStateToProps, { getAuthUserData })(HeaderContainer);
