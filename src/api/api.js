@@ -23,9 +23,21 @@ export const usersAPI = {
     return instans.delete(`follow/${usersId}`);
   },
   getProfile(userId) {
-    return instans.get(`profile/` + userId);
+    return profileAPI.getProfile(userId)
   },
 };
+
+export const profileAPI = {
+    getProfile(userId) {
+      return instans.get(`profile/` + userId);
+    },
+    getStatus(userId) {
+      return instans.get(`profile/status/` + userId);
+    },
+    updataStatus(status) {
+      return instans.put(`profile/status`, {status: status});
+    }
+  };
 
 export const authAPI = {
   me() {
