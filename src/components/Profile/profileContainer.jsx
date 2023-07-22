@@ -19,26 +19,35 @@ class ProfileContainer extends React.Component {
     debugger;
     let userId = this.props.match.params.userId;
     if (!userId) {
-      return (userId = 2);
+      userId = this.porps.authorizedUserId;
+      if(!userId) {
+        this.props.history.push("/login")
+      }
     }
-    this.props.getUserProfile(userId)
-        this.props.getStatus(userId)
+    this.props.getUserProfile(userId);
+    this.props.getStatus(userId);
   }
 
   render() {
     return (
       <div>
-        <Profile {...this.props} profile={this.props.profile} status={this.props.status }
-        updataStatus={this.props.updataStatus} />
+        <Profile
+          {...this.props}
+          profile={this.props.profile}
+          status={this.props.status}
+          updataStatus={this.props.updataStatus}
+        />
       </div>
     );
   }
 }
 
 let mapStateToProps = (state) => ({
-    profile: state.profilePage.Profile,
-    status: state.profilePage.status, 
-  });
+  profile: state.profilePage.Profile,
+  status: state.profilePage.status,
+  authorizedUserId: state.auth.userId,
+  isAuth: state.auth.isAuth,
+});
 
 export default compose(
     connect(mapStateToProps, { getUserProfile, getStatus, updataStatus }),
