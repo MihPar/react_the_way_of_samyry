@@ -43,4 +43,10 @@ export const authAPI = {
   me() {
     return instans.get(`auth/me`);
   },
+  login (email, password, rememberMe = false ) {
+    return instans.post(`auth/login`, {email, password, rememberMe});
+  },
+  logOut ( ) {
+    return instans.delete(`auth/login`);
+  },
 };
