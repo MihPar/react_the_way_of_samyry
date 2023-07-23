@@ -10,11 +10,12 @@ import React from "react";
 import Preloader from "../common/preloader/preloader";
 import { getUsers } from "../redux/users_reducer";
 import { compose } from "redux";
-import { getPageSize } from "../redux/users_selectors";
+import { getPageSize, getUsersSuper } from "../redux/users_selectors";
 import { getTotalUsersCount } from "../redux/users_selectors";
 import { getCurrentPage } from "../redux/users_selectors";
 import { getIsFetching } from "../redux/users_selectors";
 import { getFollowingInProgress } from "../redux/users_selectors";
+import { getUsers } from "../redux/users_selectors";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
