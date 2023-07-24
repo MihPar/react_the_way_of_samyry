@@ -1,8 +1,8 @@
 import Preloader from "../../common/preloader/preloader"
 import object from "./ProfileInfo.module.css"
 import React from 'react'
-import ProfileStatus from "./ProfileStatus"
- 
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
+
 const ProfileInfo = (props) => {
     if(!props.prifile) {
         return <Preloader />
@@ -14,7 +14,7 @@ const ProfileInfo = (props) => {
             </div> */}
             <div className={object.descriptionBlock}>
                 <imp src={ props.profile.photos.large } />
-                <ProfileStatus  status={props.status} updataStatus={props.updataStatus} />
+                <ProfileStatusWithHooks  status={props.status} updataStatus={props.updataStatus} />
             </div>
         </div>
     )
