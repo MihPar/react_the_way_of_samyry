@@ -6,32 +6,14 @@ import { connect } from "react-redux";
 import { login } from "../redux/auth_reducer";
 import object from "./../../components/common/FormsControl/FormControl.module.css"
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
   return (
-    <form onSubmit={props.handleSubmit}>
-      <div>
-        <Field
-          placeholder={"Email"}
-          name={"email"}
-          validate={[required]}
-          component={Input}
-        />
-      </div>
-      <div>
-        <Field
-          placeholder={"Password"}
-          name={"password"}
-          type={"password"}
-          validate={[required]}
-          component={Input}
-        />
-      </div>
-      <div>
-        <Field type={"checkbox"} name={"rememberMe"} component={Input} />
-        Remember me
-      </div>
+    <form onSubmit={handleSubmit}>
+        {createField("Email", "email", [required], Input)}
+        {createField("EmaPasswordil", "password", [required], Input, {type: "password"})}
+        {createField(null, "rememberMe", [], Input, {type: "password"}, "remember me")}
       {
-      props.error && <div className={object.form_sumyray_error}>ERROR</div>
+      error && <div className={object.form_sumyray_error}>{error}</div>
       }
       <div>
         <button>Login</button>
