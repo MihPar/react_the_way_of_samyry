@@ -15,6 +15,10 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "./components/Profile/profileContainer";
 import { compose } from "redux";
+import store from "./components/redux/redux_store";
+import { BrowserRouter } from "react-router-dom";
+import Provider from "react-redux";
+import App from "./App"
 
 class App extends Component {
   componentDidMount() {
@@ -50,7 +54,21 @@ const mapStateToProps = (state) => (
     }
 )
 
-export default compose(
+let AppContainer = compose(
     withRouter, 
     (connect(mapStateToProps, { initializeApp })))
     (App);
+
+const SumurayJSApp = (porps) => {
+  return (
+    <BrowserRouter>
+      <React.StrictMode>
+        <Provider store={store}>
+          <AppContainer />
+        </Provider>
+      </React.StrictMode>
+    </BrowserRouter>
+  );
+};
+
+export default SumurayJSApp

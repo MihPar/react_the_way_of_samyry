@@ -1,10 +1,9 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import SumurayJSApp from './App';
 import { ReactDOM } from 'react-dom';
 
-test('renders learn react link', () => {
+it('renders learn react link', () => {
     const div = document.createElement('div')
-    ReactDOM.reder(<App />, div)
+    ReactDOM.reder(<SumurayJSApp />, div)
     ReactDOM.unmountComponentAtNote(div)
 //   render(<App />);
 //   const linkElement = screen.getByText(/learn react/i);
