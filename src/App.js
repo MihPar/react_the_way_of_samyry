@@ -19,8 +19,9 @@ import store from "./components/redux/redux_store";
 import { BrowserRouter } from "react-router-dom";
 import Provider from "react-redux";
 import App from "./App"
-const DialogsContainer = React.lazy(() => {inport("./components/Dialogs/DialogsContainer")})
-const ProfileContainer = React.lazy(() => {inport("./components/Profile/profileContainer ")})
+import React, {Suspense, lazy, useEffect} from "react";
+const DialogsContainer = lazy(() => import("./components/Dialogs/DialogsContainer"));
+const ProfileContainer = lazy(() => import("./components/Profile/profileContainer "))
 
 
 
@@ -33,21 +34,40 @@ class App extends Component {
             return <Preloader />
         }
     return (
-      <div className="app-wrapper">
-        <HeaderContainer />
-        <Nav />
-        <div class="app-wraper-content">
-          <Routes>
-            <Route path="/profile/:userId?" element={<ProfileContainer />} />
-            <Route path="/dialogs" element={<DialogsContainer />} />
-            <Route path="/users" element={<UsersContainer />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/music" element={<Music />} />
-            <Route path="/friends" element={<Friends />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Routes>
-        </div>
-      </div>
+        <BrowserRouter>
+            <div className='app-wrapper'>
+                <HeaderContainer/>
+                <NavBar/>
+                <div className='app-wrapper-content'>
+                    <Suspense fallback={<Preloader />}>
+                    <Routes>
+
+                        <Route exact path="/dialogs" element={<DialogsContainer />} />
+
+                        <Route path='/profile/:userId' element={<ProfileContainer/>}/>
+                        <Route path='/profile/' element={<ProfileContainer/>}/>
+                        <Route path="/users" element={<UsersContainer/>}/>
+                        <Route path="/login" element={<Login/>}/>
+                        </Routes>
+                    </Suspense>
+                </div>
+            </div>
+        </BrowserRouter>
+    //   <div className="app-wrapper">
+    //     <HeaderContainer />
+    //     <Nav />
+    //     <div class="app-wraper-content">
+    //       <Routes>
+    //         <Route path="/profile/:userId?" element={<ProfileContainer />} />
+    //         <Route path="/dialogs" element={<DialogsContainer />} />
+    //         <Route path="/users" element={<UsersContainer />} />
+    //         <Route path="/news" element={<News />} />
+    //         <Route path="/music" element={<Music />} />
+    //         <Route path="/friends" element={<Friends />} />
+    //         <Route path="/login" element={<LoginPage />} />
+    //       </Routes>
+    //     </div>
+    //   </div>
     );
   }
 }
