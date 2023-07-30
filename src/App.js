@@ -6,9 +6,9 @@ import { Route, Routes } from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Friends from "./components/Friends/Friends";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
+// import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/profileContainer";
+// import ProfileContainer from "./components/Profile/profileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/Login";
 import { Component } from "react";
@@ -19,6 +19,10 @@ import store from "./components/redux/redux_store";
 import { BrowserRouter } from "react-router-dom";
 import Provider from "react-redux";
 import App from "./App"
+const DialogsContainer = React.lazy(() => {inport("./components/Dialogs/DialogsContainer")})
+const ProfileContainer = React.lazy(() => {inport("./components/Profile/profileContainer ")})
+
+
 
 class App extends Component {
   componentDidMount() {
