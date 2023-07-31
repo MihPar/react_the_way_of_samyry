@@ -36,7 +36,16 @@ export const profileAPI = {
     },
     updataStatus(status) {
       return instans.put(`profile/status`, {status: status});
-    }
+    },
+    savePhoto(photoFile ) {
+        var formData = new FormData()
+        formData.append("image ", photoFile)
+        return instans.put(`profile/photo`, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+      }
   };
 
 export const authAPI = {
