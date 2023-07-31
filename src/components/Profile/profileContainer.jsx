@@ -15,23 +15,31 @@ export function withRouter(Children) {
 }
 
 class ProfileContainer extends React.Component {
-  componentDidMount() {
-    debugger;
+  refreshProfile() {
     let userId = this.props.match.params.userId;
     if (!userId) {
       userId = this.porps.authorizedUserId;
-      if(!userId) {
-        this.props.history.push("/login")
+      if (!userId) {
+        this.props.history.push("/login");
       }
     }
     this.props.getUserProfile(userId);
     this.props.getStatus(userId);
+  }
+  componentDidMount() {
+    this.refreshProfile()
+  }
+  componentDidUpdata(prevProps, pervState, snapshop) {
+    if(this.props.match.params.userId != prevProps.match.params.userId) {
+        this.refreshProfile()
+    }
   }
 
   render() {
     return (
       <div>
         <Profile
+          isOwner= {!!this.props.match.params.userId}
           {...this.props}
           profile={this.props.profile}
           status={this.props.status}
