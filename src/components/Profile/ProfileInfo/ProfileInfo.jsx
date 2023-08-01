@@ -4,6 +4,7 @@ import React from "react";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import usersPhoto from "./../.././../src/assets/image/user.png";
 import { useState } from "react";
+import ProfileDataForm from "./ProfileDataForm";
 
 const ProfileInfo = ({ profile, status, updataStatus, isOwner, savePhoto }) => {
   let [editMode, setEdibMode] = useState(false);
@@ -45,42 +46,10 @@ const ProfileInfo = ({ profile, status, updataStatus, isOwner, savePhoto }) => {
 
 const ProfileData = ({ profile, isOwner, goToEditMode }) => {
   return (
-    <div>
-      <div>{isOwner && <button onClick={goToEditMode}>edit</button>}</div>
-      <div>
-        <b>Full name</b>: {profile.fullName}
-      </div>
-      <div>
-        <b>Looking for a job</b>: {profile.lookingForAJob ? "Yes" : "No"}
-      </div>
-      {profile.lookingForAJob && (
-        <div>
-          <b>My professional skills </b>: {profile.lookingForAJobDecsription}
-        </div>
-      )}
-      <div>
-        <b>About me</b>: {profile.aboutMe}
-      </div>
-      <div>
-        <b>Contacts</b>:
-        {Object.keys(profile.contacts).map(function (key) {
-          return (
-            <Contact
-              key={key}
-              contactTitile={key}
-              contactValue={profile.contacts[key]}
-            />
-          );
-        })}
-      </div>
-    </div>
+    <ProfileDataForm />
   );
 };
-const ProfileDataForm = () => {
-    return (
-        Form
-    )
-};
+
 
 const Contact = ({ contactTitle, contactValue }) => {
   return (
