@@ -19,8 +19,11 @@ const ProfileInfo = ({ profile, status, updataStatus, isOwner, savePhoto, savePr
   };
 
   const onSubmit = (formData) => {
-    saveProfile(formData)
-    setEditMode(false)
+    saveProfile(formData).then(
+        () => {
+            setEditMode(false)
+        }
+    )
 };
 
   return (
@@ -52,7 +55,36 @@ const ProfileInfo = ({ profile, status, updataStatus, isOwner, savePhoto, savePr
 
 const ProfileData = ({ profile, isOwner, goToEditMode }) => {
   return (
-    <ProfileDataForm />
+    <div>
+        {isOwner && <div><button onClick={goToEditMode}>Edit</button></div>}
+        <div>
+        <b>Full name</b>: {profile.fullName}
+      </div>
+      <div>
+        <b>Looking for a job</b>:{profile.lookingForAJob ? "yes" : "no"}
+      </div>
+      {profile.lookignForAJob && 
+      <div>
+      <b>My professional skills</b>:{profile.lookignForAJobDiscription}
+        </div>
+      }
+        
+      <div>
+        <b>About me</b>: {profile.aboutMe}
+      </div>
+      <div>
+        <b>Contacts</b>:
+        {Object.keys(profile.contacts).map(function (key) {
+          return (
+            <Contact
+              key={key}
+              contactTitile={key}
+              contactValue={profile.contacts[key]}
+            />
+          );
+        })}
+      </div>
+    </div>
   );
 };
 
