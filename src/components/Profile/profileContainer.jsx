@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import { compose } from "redux";
 import { getStatus } from "../redux/profile_reducer";
 import { updataStatus } from "../redux/profile_reducer";
+import { savePhoto } from "../redux/profile_reducer";
+import saveProfile from './../redux/profile_reducer'
 
 export function withRouter(Children) {
   return (props) => {
@@ -61,7 +63,7 @@ let mapStateToProps = (state) => {
 };
 
 export default compose(
-    connect(mapStateToProps, { getUserProfile, getStatus, updataStatus, savePhoto }),
+    connect(mapStateToProps, { getUserProfile, getStatus, updataStatus, savePhoto, saveProfile }),
     withRouter,
     // WithAuthRedirect
 )(ProfileContainer )
