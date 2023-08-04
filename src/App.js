@@ -1,16 +1,11 @@
 // import logo from "./logo.svg";
 import React from "react";
 import "./App.css";
-import Nav from "./components/Nav/nav";
 import { Route, Routes } from "react-router-dom";
-import News from "./components/News/News";
-import Music from "./components/Music/Music";
-import Friends from "./components/Friends/Friends";
 // import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 // import ProfileContainer from "./components/Profile/profileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import LoginPage from "./components/Login/Login";
 import { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "./components/Profile/profileContainer";
