@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const instans = axios.create({
+const instance = axios.create({
   withCredentials: true,
   baseUrl: `https://social-network.samuraijs.com/api/1.0/`,
   headers: {
@@ -10,17 +10,17 @@ const instans = axios.create({
 
 export const usersAPI = {
   getUsers(currentPage = 1, pageSize = 10) {
-    return instans
+    return instance
       .get(`users?page=${currentPage}&count=${pageSize}`)
       .then(function (response) {
         return response.data;
       });
   },
   follow(usersId) {
-    return instans.post(`follow/${usersId}`);
+    return instance.post(`follow/${usersId}`);
   },
   unfollow(usersId) {
-    return instans.delete(`follow/${usersId}`);
+    return instance.delete(`follow/${usersId}`);
   },
   getProfile(userId) {
     return profileAPI.getProfile(userId)
@@ -29,36 +29,42 @@ export const usersAPI = {
 
 export const profileAPI = {
     getProfile(userId) {
-      return instans.get(`profile/` + userId);
+      return instance.get(`profile/` + userId);
     },
     getStatus(userId) {
-      return instans.get(`profile/status/` + userId);
+      return instance.get(`profile/status/` + userId);
     },
     updataStatus(status) {
-      return instans.put(`profile/status`, {status: status});
+      return instance.put(`profile/status`, {status: status});
     },
     savePhoto(photoFile ) {
         var formData = new FormData()
         formData.append("image ", photoFile)
-        return instans.put(`profile/photo`, formData, {
+        return instance.put(`profile/photo`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }
         });
       },
       saveProfile(profile) {
-        return instans.put(`profile`, profile);
+        return instance.put(`profile`, profile);
       }
   };
 
 export const authAPI = {
   me() {
-    return instans.get(`auth/me`);
+    return instance.get(`auth/me`);
   },
-  login (email, password, rememberMe = false ) {
-    return instans.post(`auth/login`, {email, password, rememberMe});
+  login (email, password, rememberMe = false, captcha = null  ) {
+    return instance.post(`auth/login`, {email, password, rememberMe, captcha });
   },
   logOut ( ) {
-    return instans.delete(`auth/login`);
+    return instance.delete(`auth/login`);
+  },
+};
+
+export const securityAPI = {
+  getCaptchaUrl() {
+    return instance.get(`security/get-captcha-url`);
   },
 };
