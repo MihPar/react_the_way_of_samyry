@@ -23,6 +23,7 @@ const ProfileContainer = lazy(() => import("./components/Profile/profileContaine
 class App extends Component {
   componentDidMount() {
     this.props.initializeApp();
+    window.addEventListener("unhandledrejection", function(promiseRejectionEvent) {})
   }
   render() {
         if (!this.props.initialized) {
@@ -42,7 +43,9 @@ class App extends Component {
                         <Route path='/profile/:userId' element={<ProfileContainer/>}/>
                         <Route path='/profile/' element={<ProfileContainer/>}/>
                         <Route path="/users" element={<UsersContainer/>}/>
-                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/login/facebook" element={() => {<div>Facebook</div>}}/>
+                        <Route exact path="/login" element={<Login/>}/>
+                        <Route path="*" element={() => {<div>404 NOT FOUND</div>}}/>
                         </Routes>
                     </Suspense>
                 </div>
